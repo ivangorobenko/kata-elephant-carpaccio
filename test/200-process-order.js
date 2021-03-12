@@ -13,7 +13,7 @@ describe('process.order(payload)', function () {
             "country": "UK",
             "reduction": "STANDARD"
         });
-        expect(result).to.deep.equal({total: 1376.46});
+        expect(result).to.deep.equal({total: 1249.17});
     })
     it('doddit renvoyer le total de 19.03 pour la commande {"prices":[15.99],"quantities":[1],"country":"NL","reduction":"STANDARD"} ', function () {
         const result = process.order({
@@ -22,8 +22,7 @@ describe('process.order(payload)', function () {
             "country": "UK",
             "reduction": "PAY THE PRICE"
         });
-        console.log((89.3*8+34.99*10)*1.3333)
-        expect(result).to.deep.equal({total: 1419.03});
+        expect(result).to.deep.equal({total: 1287.80});
     })
     it('doit renvoyer le total de  pour la commande ', function () {
         const result = process.order({
@@ -51,8 +50,17 @@ describe('process.order(payload)', function () {
             "country": "DE",
             "reduction": "PAY THE PRICE"
         });
-
         expect(result).to.deep.equal({total: 2110.44});
+    });
+    it('doit renvdfdoyer le total de  pour la comsdsdmande ', function () {
+        const result = process.order({
+            "prices": [600],
+            "quantities": [1],
+            "country": "DE",
+            "reduction": "PAY THE PRICE"
+        });
+        console.log(600*1.2)
+        expect(result).to.deep.equal({total: 720});
     })
 })
 
