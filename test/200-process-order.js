@@ -4,7 +4,7 @@ var process = require('../lib/process');
 describe('process.order(payload)', function () {
     it('calls back with an empty object', function (done) {
         const result = process.order({})
-        expect(result).to.deep.equal({});
+        expect(result).to.deep.equal(undefined);
     })
     it('doit renvoyer le total de 19.03 pour la commande {"prices":[15.99],"quantities":[1],"country":"NL","reduction":"STANDARD"} ', function () {
         const result = process.order({
@@ -24,5 +24,15 @@ describe('process.order(payload)', function () {
             "reduction": "STANDARD"
         });
         expect(result).to.deep.equal({total: 427.94});
+    })
+    it('doit envoyer une erreur 404 si country n est pas trouvcé ', function () {
+        const result = process.order({
+            "prices": [45.31, 11.43, 9.34],
+            "quantities": [7,1,3],
+            "country": "TU",
+            "reduction": "STANDARD"
+        });
+        console.log(result)
+        expect(result).to.deep.equal(undefined);
     })
 })
