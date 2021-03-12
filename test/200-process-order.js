@@ -16,4 +16,13 @@ describe('process.order(payload)', function () {
         console.log(result)
         expect(result).to.deep.equal({total: 1287.80});
     })
+    it('doit renvoyer le total de  pour la commande ', function () {
+        const result = process.order({
+            "prices": [45.31, 11.43, 9.34],
+            "quantities": [7,1,3],
+            "country": "DE",
+            "reduction": "STANDARD"
+        });
+        expect(result).to.deep.equal({total: 427.94});
+    })
 })
