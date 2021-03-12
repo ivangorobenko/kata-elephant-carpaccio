@@ -27,40 +27,49 @@ describe('process.order(payload)', function () {
     it('doit renvoyer le total de  pour la commande ', function () {
         const result = process.order({
             "prices": [45.31, 11.43, 9.34],
-            "quantities": [7,1,3],
-            "country": "DE",
+            "quantities": [7, 1, 3],
+            "country": "FR",
             "reduction": "STANDARD"
         });
         expect(result).to.deep.equal({total: 427.94});
     })
-    it('doit envoyer une erreur 404 si country n est pas trouvcé ', function () {
+    it('doit envoyer une erreur 404 si country n est pas trouvé ', function () {
         const result = process.order({
             "prices": [45.31, 11.43, 9.34],
-            "quantities": [7,1,3],
+            "quantities": [7, 1, 3],
             "country": "TU",
             "reduction": "STANDARD"
         });
         console.log(result)
         expect(result).to.deep.equal(undefined);
     })
-    it('doit renvoyer le total de  pour la comsdsdmande ', function () {
+    it('doit renvoyer le total pour DE avec la reduction de plus de 1000 ', function () {
         const result = process.order({
             "prices": [33.25, 45.9, 8.69, 21.75, 77.32, 65.38, 7.49, 48.09, 71.62],
-            "quantities": [4,8,1,2,1,2,9,3,10],
+            "quantities": [4, 8, 1, 2, 1, 2, 9, 3, 10],
             "country": "DE",
             "reduction": "PAY THE PRICE"
         });
-        expect(result).to.deep.equal({total: 2110.44});
+        expect(result).to.deep.equal({total: 2026.02});
     });
-    it('doit renvdfdoyer le total de  pour la comsdsdmande ', function () {
+    it('doit renvoyer le bon total pour DE sans réduction', function () {
         const result = process.order({
             "prices": [600],
             "quantities": [1],
             "country": "DE",
             "reduction": "PAY THE PRICE"
         });
-        console.log(600*1.2)
+        console.log(600 * 1.2)
         expect(result).to.deep.equal({total: 720});
+    })
+    it('doit renvoyer le bon total pour la reduction HALF PRICE', function () {
+        const result = process.order({
+            "prices": [600],
+            "quantities": [1],
+            "country": "DE",
+            "reduction": "HALF PRICE"
+        });
+        expect(result).to.deep.equal({total: 360});
     })
 })
 
