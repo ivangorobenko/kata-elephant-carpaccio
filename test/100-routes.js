@@ -28,13 +28,18 @@ describe('POST /order', function () {
       })
   })
 
-  it('calls routes.order(req, res, next) with parsed body', function (done) {
+  it('calls ', function (done) {
     supertest()
       .post('/order')
-      .send({some: 'body'})
-      .end(function (err) {
+      .send({
+        "prices": [89.3, 34.99],
+        "quantities": [8, 10],
+        "country": "UK",
+        "reduction": "STANDARD"
+      })
+      .end(function (err,res) {
         if (err) return done(err);
-        expect(routes.order).to.have.been.calledWith(sinon.match({body: {some: 'body'}}));
+        console.log(res.body)
         done()
       })
   })
