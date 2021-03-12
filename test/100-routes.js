@@ -27,6 +27,17 @@ describe('POST /order', function () {
         done()
       })
   })
+
+  it('calls routes.order(req, res, next) with parsed body', function (done) {
+    supertest()
+      .post('/order')
+      .send({some: 'body'})
+      .end(function (err) {
+        if (err) return done(err);
+        expect(routes.order).to.have.been.calledWith(sinon.match({body: {some: 'body'}}));
+        done()
+      })
+  })
 })
 
 describe('POST /feedback', function () {
