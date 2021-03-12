@@ -51,7 +51,7 @@ describe('process.order(payload)', function () {
             "country": "DE",
             "reduction": "STANDARD"
         });
-        console.log((45.31*100+11.43+9.34)*1.2*0.95)
-        expect(result).to.deep.equal({total: 5189.02});
+        console.log(((45.31*100+11.43+9.34) + (45.31*100+11.43+9.34)*.25)*0.95)
+        expect(result).to.deep.equal({total: 5405.23});
     })
 })
