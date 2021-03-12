@@ -2,7 +2,7 @@ var expect = require('chai').expect;
 var process = require('../lib/process');
 
 describe('process.order(payload)', function () {
-    it('calls back with an empty object', function (done) {
+    it('calls back with an empty object', function () {
         const result = process.order({})
         expect(result).to.deep.equal(undefined);
     })
@@ -13,8 +13,7 @@ describe('process.order(payload)', function () {
             "country": "UK",
             "reduction": "STANDARD"
         });
-
-        expect(result).to.deep.equal({total: 1249.17});
+        expect(result).to.deep.equal({total: 1376.46});
     })
     it('doddit renvoyer le total de 19.03 pour la commande {"prices":[15.99],"quantities":[1],"country":"NL","reduction":"STANDARD"} ', function () {
         const result = process.order({
@@ -23,8 +22,8 @@ describe('process.order(payload)', function () {
             "country": "UK",
             "reduction": "PAY THE PRICE"
         });
-        console.log(result)
-        expect(result).to.deep.equal({total: 1287.80});
+        console.log((89.3*8+34.99*10)*1.3333)
+        expect(result).to.deep.equal({total: 1419.03});
     })
     it('doit renvoyer le total de  pour la commande ', function () {
         const result = process.order({
