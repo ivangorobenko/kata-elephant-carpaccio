@@ -39,7 +39,7 @@ describe('POST /order', function () {
       })
       .end(function (err,res) {
         if (err) return done(err);
-        console.log(res.body)
+        expect(res.body).to.be.deep.equals({total: 1287.80})
         done()
       })
   })
